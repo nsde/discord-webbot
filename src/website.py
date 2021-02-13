@@ -1,5 +1,9 @@
 import os
 import random
+
+import discordbot
+import discord
+from discord.ext import commands
 from flask import Flask, request, render_template, request
 
 cwd = os.getcwd()
@@ -12,10 +16,14 @@ def home():
 @app.route('/panel/', methods=['GET', 'POST'])
 def panel():
     if request.method == 'GET':
-        return f"The URL /data is accessed directly. Try going to '/form' to submit form"
+        return f'The URL /data cant be accessed directly'
     if request.method == 'POST':
-        form_data = request.form
-        return render_template('panel.html', form_data=form_data)
+        data = request.form
+        token = str(data['token'])
+        print("\n\n\n==========" + data['token'])
+        
+        discordbot.createbot(token)
+        return render_template('panel.html', data=data)
 
 
 if __name__ == '__main__':
