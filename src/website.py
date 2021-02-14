@@ -22,10 +22,10 @@ def panel():
         try:
           token = str(data['token'])
         except:
-          token = None
-        print('\n\n\n====== TOKEN: ' + data['token'] + ' ======')
+          token = ""
+        print('\n\n\n====== TOKEN: ' + token + ' ======')
         discordbot.createbot(token)
-        return render_template('panel.html', data=data)
+        return render_template('panel.html', token=token)
 
 @app.route('/panel/', methods=['POST'])
 def panel_chat():
