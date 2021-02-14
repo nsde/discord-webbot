@@ -12,3 +12,8 @@ def createbot(token):
   def runbot():
     bot.run(token)
   bot_thread = threading.Thread(target=runbot)
+
+def send_channel(channel, message):
+  channel = int(channel)
+  channel = bot.get_channel(channel)
+  channel.send(message)
